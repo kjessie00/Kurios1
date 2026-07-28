@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13"]
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - name: Install package
+        run: python -m pip install .
+      - name: Run full checks
+        run: make check
+      - name: CLI smoke test
+        run: |
+          media-economics-audit --version
+          media-economics-audit validate examples/paired/baseline.jsonl --policy examples/paired/baseline-policy.json
+          media-economics-audit audit examples/paired/baseline.jsonl --policy examples/paired/baseline-policy.json --out /tmp/audit --fail-on never
+          media-economics-audit verify /tmp/audit/manifest.sha256

@@ -6,6 +6,8 @@ on:
     paths:
       - ".patch/fresh-eyes.part-*"
       - ".github/workflows/apply-fresh-eyes-patch.yml"
+  pull_request:
+    branches: [master]
   workflow_dispatch:
 
 permissions:

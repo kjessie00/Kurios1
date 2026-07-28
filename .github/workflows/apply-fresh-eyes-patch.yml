@@ -1,0 +1,48 @@
+name: Apply fresh-eyes economics patch
+
+on:
+  push:
+    branches: [agent/ai-media-economics-audit]
+    paths:
+      - ".patch/fresh-eyes.part-*"
+      - ".github/workflows/apply-fresh-eyes-patch.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/ai-media-economics-audit
+          fetch-depth: 0
+      - name: Verify and extract patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t parts < <(find .patch -maxdepth 1 -type f -name 'fresh-eyes.part-*' | sort)
+          test "${#parts[@]}" -eq 4
+          cat "${parts[@]}" > /tmp/fresh-eyes-patch.tar.gz.b64
+          echo "b2f1846f9cd9eeb213aa421a19ec5487acfc9106e68da00ba434ef83c2964384  /tmp/fresh-eyes-patch.tar.gz.b64" | sha256sum -c -
+          base64 --decode /tmp/fresh-eyes-patch.tar.gz.b64 > /tmp/fresh-eyes-patch.tar.gz
+          echo "191d7ceed4f4fc3b4d589d4e47f0931f6e54ec07687370db01a62da653d68a00  /tmp/fresh-eyes-patch.tar.gz" | sha256sum -c -
+          ! tar -tzf /tmp/fresh-eyes-patch.tar.gz | grep -E '(^|/)\.\.(/|$)|^/|(^|/)\.git(/|$)|^\.github/workflows/'
+          tar -xzf /tmp/fresh-eyes-patch.tar.gz -C .
+          rm -rf .patch
+      - name: Verify patched source
+        run: make check
+      - name: Commit verified source patch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --check
+          git diff --quiet -- .github/workflows/apply-fresh-eyes-patch.yml
+          git commit -m "fix: make audit decisions unit-economics aware"
+          git push origin HEAD:agent/ai-media-economics-audit

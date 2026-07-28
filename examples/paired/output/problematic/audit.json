@@ -1,0 +1,211 @@
+{
+  "accepted_artifacts": [
+    {
+      "artifact_id": "weak-output",
+      "artifact_kind": "script",
+      "artifact_sha256": "44a105f55690dfcc5db932231dda1899a0d28cb4e915141cd64b32709839d229",
+      "gate_id": "synthetic-quality-v1",
+      "quality_score": 0.7
+    }
+  ],
+  "audit_name": "synthetic-problematic",
+  "breakdown": {
+    "by_model": {
+      "gpt-5.6-pro": {
+        "calls": 3,
+        "estimated_cost": "0.000000",
+        "exact_cached_input_tokens": 0,
+        "exact_cost": "0.000000",
+        "exact_input_tokens": 0,
+        "exact_non_cached_input_tokens": 0,
+        "exact_output_tokens": 0,
+        "exact_reasoning_tokens": 0,
+        "failed_or_incomplete": 0,
+        "succeeded": 3,
+        "unknown_cost_calls": 3
+      }
+    },
+    "by_provider": {
+      "openai": {
+        "calls": 3,
+        "estimated_cost": "0.000000",
+        "exact_cached_input_tokens": 0,
+        "exact_cost": "0.000000",
+        "exact_input_tokens": 0,
+        "exact_non_cached_input_tokens": 0,
+        "exact_output_tokens": 0,
+        "exact_reasoning_tokens": 0,
+        "failed_or_incomplete": 0,
+        "succeeded": 3,
+        "unknown_cost_calls": 3
+      }
+    },
+    "by_stage": {
+      "research": {
+        "calls": 3,
+        "estimated_cost": "0.000000",
+        "exact_cached_input_tokens": 0,
+        "exact_cost": "0.000000",
+        "exact_input_tokens": 0,
+        "exact_non_cached_input_tokens": 0,
+        "exact_output_tokens": 0,
+        "exact_reasoning_tokens": 0,
+        "failed_or_incomplete": 0,
+        "succeeded": 3,
+        "unknown_cost_calls": 3
+      }
+    }
+  },
+  "confidence": "low",
+  "currency": "USD",
+  "finding_counts": {
+    "critical": 0,
+    "high": 6,
+    "info": 0,
+    "low": 0,
+    "medium": 0
+  },
+  "findings": [
+    {
+      "code": "ATTEMPT_BUDGET_EXCEEDED",
+      "detail": "Operation research used 2 attempts; budget is 1.",
+      "evidence": [
+        "p-call-1",
+        "p-call-2"
+      ],
+      "remediation": "Add a stop-loss or require a fresh approval before further retries.",
+      "severity": "high",
+      "title": "Operation exceeded its attempt budget"
+    },
+    {
+      "code": "DUPLICATE_SUCCESSFUL_WORK",
+      "detail": "Dedupe key 81f358c07625… has 2 successful calls; recorded extra exact cost is 0.000000 USD. 1 duplicate call(s) lack exact cost, so total duplicate cost is not proven.",
+      "evidence": [
+        "p-call-1",
+        "p-call-2"
+      ],
+      "remediation": "Acquire an idempotency lease before dispatch and bind completion to the dedupe key.",
+      "severity": "high",
+      "title": "The same logical work succeeded more than once"
+    },
+    {
+      "code": "EXACT_COST_COVERAGE_LOW",
+      "detail": "Coverage is 0.0%; policy requires 100.0%.",
+      "evidence": [
+        "p-call-1",
+        "p-call-2",
+        "p-call-3"
+      ],
+      "remediation": "Ingest provider or verified-host receipts; do not relabel estimates as exact.",
+      "severity": "high",
+      "title": "Too few calls have exact cost receipts"
+    },
+    {
+      "code": "EXACT_TOKEN_COVERAGE_LOW",
+      "detail": "Coverage is 0.0%; policy requires 100.0%.",
+      "evidence": [
+        "p-call-1",
+        "p-call-2",
+        "p-call-3"
+      ],
+      "remediation": "Capture provider usage fields or label the measurement as estimated/unknown.",
+      "severity": "high",
+      "title": "Too few calls have exact token receipts"
+    },
+    {
+      "code": "REQUIRED_OPERATION_MISSING",
+      "detail": "Required operation qa-review is absent from the event ledger.",
+      "evidence": [
+        "qa-review"
+      ],
+      "remediation": "Ingest the missing receipt or fail the pipeline before claiming completion.",
+      "severity": "high",
+      "title": "Required operation did not produce a call receipt"
+    },
+    {
+      "code": "UNPLANNED_OPERATION",
+      "detail": "Operation hidden-review executed 1 call(s) without a declared budget.",
+      "evidence": [
+        "p-call-3"
+      ],
+      "remediation": "Declare the operation and budget before dispatch, or remove the hidden call.",
+      "severity": "high",
+      "title": "Model call was not declared in the policy"
+    }
+  ],
+  "policy_snapshot": {
+    "audit_name": "synthetic-problematic",
+    "currency": "USD",
+    "maximum_failed_cost_ratio": 0.05,
+    "maximum_retry_cost_ratio": 0.1,
+    "minimum_exact_cost_coverage": 1.0,
+    "minimum_exact_token_coverage": 1.0,
+    "operations": {
+      "qa-review": {
+        "allowed_models": [
+          "gpt-5.6-pro",
+          "gpt-5.6-mini"
+        ],
+        "allowed_providers": [
+          "openai"
+        ],
+        "max_attempts": 1,
+        "max_exact_cost": "0.170000",
+        "required": true,
+        "stage": "qa"
+      },
+      "research": {
+        "allowed_models": [
+          "gpt-5.6-pro",
+          "gpt-5.6-mini"
+        ],
+        "allowed_providers": [
+          "openai"
+        ],
+        "max_attempts": 1,
+        "max_exact_cost": "0.300000",
+        "required": true,
+        "stage": "research"
+      }
+    },
+    "require_accepted_artifact": true,
+    "schema_version": "media-economics-policy.v1"
+  },
+  "schema_version": "media-economics-audit.v1",
+  "source_digest_sha256": "7d4189ffda1a714d4d3858e29d2759eb118a282aa38b498ab1e13e247e10e498",
+  "status": "FAIL",
+  "summary": {
+    "accepted_artifact_count": 1,
+    "artifact_acceptance_rate": 1.0,
+    "cache_hit_count": 0,
+    "cache_hit_rate_known": null,
+    "cache_miss_count": 0,
+    "cache_unknown_or_bypass_count": 3,
+    "call_count": 3,
+    "cost_per_accepted_artifact": null,
+    "cost_per_accepted_artifact_confidence": "not_available",
+    "duplicate_exact_cost": "0.000000",
+    "estimated_cost": "0.000000",
+    "estimated_cost_call_count": 0,
+    "estimated_token_call_count": 0,
+    "exact_cached_input_tokens": 0,
+    "exact_cost": "0.000000",
+    "exact_cost_coverage": 0.0,
+    "exact_input_tokens": 0,
+    "exact_non_cached_input_tokens": 0,
+    "exact_output_tokens": 0,
+    "exact_reasoning_tokens": 0,
+    "exact_token_coverage": 0.0,
+    "failed_exact_cost": "0.000000",
+    "failed_exact_cost_ratio": 0.0,
+    "highest_finding_severity": "high",
+    "rejected_artifact_count": 0,
+    "retry_call_count": 0,
+    "retry_exact_cost": "0.000000",
+    "retry_exact_cost_ratio": 0.0,
+    "run_wall_seconds": 9.0,
+    "terminal_call_count": 3,
+    "unknown_cost_call_count": 3,
+    "unknown_token_call_count": 3
+  }
+}

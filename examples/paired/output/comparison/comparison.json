@@ -1,0 +1,43 @@
+{
+  "baseline": {
+    "accepted_artifact_count": 2,
+    "artifact_acceptance_rate": 1.0,
+    "audit_name": "synthetic-baseline",
+    "cost_per_accepted_artifact": "0.710000",
+    "exact_cost": "1.420000",
+    "exact_cost_coverage": 1.0,
+    "exact_non_cached_input_tokens": 52500,
+    "retry_exact_cost_ratio": 0.197183,
+    "status": "PASS"
+  },
+  "baseline_digest_sha256": "7b4c76c606b145da2dcfc70bf7e672fc3b1e2d440dc9c70799135817d5c6a6ba",
+  "candidate": {
+    "accepted_artifact_count": 2,
+    "artifact_acceptance_rate": 1.0,
+    "audit_name": "synthetic-optimized",
+    "cost_per_accepted_artifact": "0.395000",
+    "exact_cost": "0.790000",
+    "exact_cost_coverage": 1.0,
+    "exact_non_cached_input_tokens": 17500,
+    "retry_exact_cost_ratio": 0.0,
+    "status": "PASS"
+  },
+  "candidate_digest_sha256": "8d2cd99f24cfd6690a77b49ccb292735389dec335fe75badb7c62fb6d225669e",
+  "cautions": [],
+  "comparison_digest_sha256": "d50d998ba4b97db299ebfec0951470d604c1c9ed1565006828b6c85aa15557d0",
+  "comparison_name": "synthetic-baseline-vs-optimized",
+  "conclusion": "IMPROVED",
+  "confidence": "high",
+  "currency": "USD",
+  "decision_rule": "A candidate is labeled IMPROVED only when both sides have 100% exact-cost coverage, the accepted-output floor and severity profile are preserved, and candidate exact cost is lower.",
+  "delta": {
+    "accepted_artifact_count": 0,
+    "cost_per_accepted_artifact": "-0.315000",
+    "exact_cost": "-0.630000",
+    "exact_cost_reduction_ratio": 0.443662,
+    "exact_non_cached_input_tokens": -35000,
+    "retry_exact_cost_ratio": -0.197183
+  },
+  "quality_floor_preserved": true,
+  "schema_version": "media-economics-comparison.v1"
+}

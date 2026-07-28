@@ -1,0 +1,255 @@
+{
+  "accepted_artifacts": [
+    {
+      "artifact_id": "script-package",
+      "artifact_kind": "script",
+      "artifact_sha256": "a6ac9066e8279f898c958da4c13848af40c018fa48f2d816209a1ab99bd0b4fa",
+      "gate_id": "synthetic-quality-v1",
+      "quality_score": 0.92
+    },
+    {
+      "artifact_id": "visual-package",
+      "artifact_kind": "visual-plan",
+      "artifact_sha256": "4193422a200547c9df0ac6ec52432a3689a70a28544cc203a35b4ffd5faadaa0",
+      "gate_id": "synthetic-quality-v1",
+      "quality_score": 0.91
+    }
+  ],
+  "audit_name": "synthetic-optimized",
+  "breakdown": {
+    "by_model": {
+      "gpt-5.6-mini": {
+        "calls": 3,
+        "estimated_cost": "0.000000",
+        "exact_cached_input_tokens": 11500,
+        "exact_cost": "0.370000",
+        "exact_input_tokens": 20000,
+        "exact_non_cached_input_tokens": 8500,
+        "exact_output_tokens": 2000,
+        "exact_reasoning_tokens": 240,
+        "failed_or_incomplete": 0,
+        "succeeded": 3,
+        "unknown_cost_calls": 0
+      },
+      "gpt-5.6-pro": {
+        "calls": 2,
+        "estimated_cost": "0.000000",
+        "exact_cached_input_tokens": 11500,
+        "exact_cost": "0.420000",
+        "exact_input_tokens": 20500,
+        "exact_non_cached_input_tokens": 9000,
+        "exact_output_tokens": 2500,
+        "exact_reasoning_tokens": 320,
+        "failed_or_incomplete": 0,
+        "succeeded": 2,
+        "unknown_cost_calls": 0
+      }
+    },
+    "by_provider": {
+      "openai": {
+        "calls": 5,
+        "estimated_cost": "0.000000",
+        "exact_cached_input_tokens": 23000,
+        "exact_cost": "0.790000",
+        "exact_input_tokens": 40500,
+        "exact_non_cached_input_tokens": 17500,
+        "exact_output_tokens": 4500,
+        "exact_reasoning_tokens": 560,
+        "failed_or_incomplete": 0,
+        "succeeded": 5,
+        "unknown_cost_calls": 0
+      }
+    },
+    "by_stage": {
+      "planning": {
+        "calls": 1,
+        "estimated_cost": "0.000000",
+        "exact_cached_input_tokens": 5000,
+        "exact_cost": "0.120000",
+        "exact_input_tokens": 8000,
+        "exact_non_cached_input_tokens": 3000,
+        "exact_output_tokens": 700,
+        "exact_reasoning_tokens": 80,
+        "failed_or_incomplete": 0,
+        "succeeded": 1,
+        "unknown_cost_calls": 0
+      },
+      "qa": {
+        "calls": 1,
+        "estimated_cost": "0.000000",
+        "exact_cached_input_tokens": 3000,
+        "exact_cost": "0.100000",
+        "exact_input_tokens": 5000,
+        "exact_non_cached_input_tokens": 2000,
+        "exact_output_tokens": 500,
+        "exact_reasoning_tokens": 60,
+        "failed_or_incomplete": 0,
+        "succeeded": 1,
+        "unknown_cost_calls": 0
+      },
+      "research": {
+        "calls": 1,
+        "estimated_cost": "0.000000",
+        "exact_cached_input_tokens": 8000,
+        "exact_cost": "0.180000",
+        "exact_input_tokens": 12000,
+        "exact_non_cached_input_tokens": 4000,
+        "exact_output_tokens": 1200,
+        "exact_reasoning_tokens": 140,
+        "failed_or_incomplete": 0,
+        "succeeded": 1,
+        "unknown_cost_calls": 0
+      },
+      "visual": {
+        "calls": 1,
+        "estimated_cost": "0.000000",
+        "exact_cached_input_tokens": 3500,
+        "exact_cost": "0.150000",
+        "exact_input_tokens": 7000,
+        "exact_non_cached_input_tokens": 3500,
+        "exact_output_tokens": 800,
+        "exact_reasoning_tokens": 100,
+        "failed_or_incomplete": 0,
+        "succeeded": 1,
+        "unknown_cost_calls": 0
+      },
+      "writing": {
+        "calls": 1,
+        "estimated_cost": "0.000000",
+        "exact_cached_input_tokens": 3500,
+        "exact_cost": "0.240000",
+        "exact_input_tokens": 8500,
+        "exact_non_cached_input_tokens": 5000,
+        "exact_output_tokens": 1300,
+        "exact_reasoning_tokens": 180,
+        "failed_or_incomplete": 0,
+        "succeeded": 1,
+        "unknown_cost_calls": 0
+      }
+    }
+  },
+  "confidence": "high",
+  "currency": "USD",
+  "finding_counts": {
+    "critical": 0,
+    "high": 0,
+    "info": 0,
+    "low": 0,
+    "medium": 0
+  },
+  "findings": [],
+  "policy_snapshot": {
+    "audit_name": "synthetic-optimized",
+    "currency": "USD",
+    "maximum_failed_cost_ratio": 0.2,
+    "maximum_retry_cost_ratio": 0.25,
+    "minimum_exact_cost_coverage": 1.0,
+    "minimum_exact_token_coverage": 1.0,
+    "operations": {
+      "outline": {
+        "allowed_models": [
+          "gpt-5.6-pro",
+          "gpt-5.6-mini"
+        ],
+        "allowed_providers": [
+          "openai"
+        ],
+        "max_attempts": 1,
+        "max_exact_cost": "0.200000",
+        "required": true,
+        "stage": "planning"
+      },
+      "qa-review": {
+        "allowed_models": [
+          "gpt-5.6-pro",
+          "gpt-5.6-mini"
+        ],
+        "allowed_providers": [
+          "openai"
+        ],
+        "max_attempts": 1,
+        "max_exact_cost": "0.170000",
+        "required": true,
+        "stage": "qa"
+      },
+      "research": {
+        "allowed_models": [
+          "gpt-5.6-pro",
+          "gpt-5.6-mini"
+        ],
+        "allowed_providers": [
+          "openai"
+        ],
+        "max_attempts": 1,
+        "max_exact_cost": "0.300000",
+        "required": true,
+        "stage": "research"
+      },
+      "script-draft": {
+        "allowed_models": [
+          "gpt-5.6-pro",
+          "gpt-5.6-mini"
+        ],
+        "allowed_providers": [
+          "openai"
+        ],
+        "max_attempts": 2,
+        "max_exact_cost": "0.550000",
+        "required": true,
+        "stage": "writing"
+      },
+      "visual-plan": {
+        "allowed_models": [
+          "gpt-5.6-pro",
+          "gpt-5.6-mini"
+        ],
+        "allowed_providers": [
+          "openai"
+        ],
+        "max_attempts": 1,
+        "max_exact_cost": "0.250000",
+        "required": true,
+        "stage": "visual"
+      }
+    },
+    "require_accepted_artifact": true,
+    "schema_version": "media-economics-policy.v1"
+  },
+  "schema_version": "media-economics-audit.v1",
+  "source_digest_sha256": "8d2cd99f24cfd6690a77b49ccb292735389dec335fe75badb7c62fb6d225669e",
+  "status": "PASS",
+  "summary": {
+    "accepted_artifact_count": 2,
+    "artifact_acceptance_rate": 1.0,
+    "cache_hit_count": 5,
+    "cache_hit_rate_known": 1.0,
+    "cache_miss_count": 0,
+    "cache_unknown_or_bypass_count": 0,
+    "call_count": 5,
+    "cost_per_accepted_artifact": "0.395000",
+    "cost_per_accepted_artifact_confidence": "high",
+    "duplicate_exact_cost": "0.000000",
+    "estimated_cost": "0.000000",
+    "estimated_cost_call_count": 0,
+    "estimated_token_call_count": 0,
+    "exact_cached_input_tokens": 23000,
+    "exact_cost": "0.790000",
+    "exact_cost_coverage": 1.0,
+    "exact_input_tokens": 40500,
+    "exact_non_cached_input_tokens": 17500,
+    "exact_output_tokens": 4500,
+    "exact_reasoning_tokens": 560,
+    "exact_token_coverage": 1.0,
+    "failed_exact_cost": "0.000000",
+    "failed_exact_cost_ratio": 0.0,
+    "highest_finding_severity": "info",
+    "rejected_artifact_count": 0,
+    "retry_call_count": 0,
+    "retry_exact_cost": "0.000000",
+    "retry_exact_cost_ratio": 0.0,
+    "run_wall_seconds": 30.0,
+    "terminal_call_count": 5,
+    "unknown_cost_call_count": 0,
+    "unknown_token_call_count": 0
+  }
+}

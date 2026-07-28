@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "media-pipeline-economics-audit"
+version = "0.1.0"
+description = "Evidence-aware economics audits for AI media pipelines"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Kim BongHyun" }]
+keywords = ["ai", "media", "llm", "audit", "observability", "cost", "tokens", "video"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Software Development :: Quality Assurance",
+  "Topic :: System :: Monitoring",
+]
+dependencies = []
+
+[project.scripts]
+media-economics-audit = "media_economics_audit.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/kjessie00/Kurios1"
+Repository = "https://github.com/kjessie00/Kurios1"
+Issues = "https://github.com/kjessie00/Kurios1/issues"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

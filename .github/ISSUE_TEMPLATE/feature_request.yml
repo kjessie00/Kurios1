@@ -1,0 +1,31 @@
+name: Feature request
+description: Propose a new evidence or audit capability
+title: "feature: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: claim
+    attributes:
+      label: What new claim should the tool be able to prove?
+      description: Describe the evidence, not just the UI or integration.
+    validations:
+      required: true
+  - type: textarea
+    id: contract
+    attributes:
+      label: Proposed contract and failure cases
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+    validations:
+      required: true
+  - type: checkboxes
+    id: boundary
+    attributes:
+      label: Public boundary
+      options:
+        - label: The proposal can be tested with synthetic data and does not require raw prompts, credentials, or customer content.
+          required: true

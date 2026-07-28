@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using these metadata."
+title: "AI Media Pipeline Economics Audit"
+type: software
+authors:
+  - family-names: Kim
+    given-names: BongHyun
+    alias: kjessie00
+version: 0.1.0
+date-released: 2026-07-28
+license: Apache-2.0
+repository-code: "https://github.com/kjessie00/Kurios1"
+url: "https://github.com/kjessie00/Kurios1"
+abstract: "Evidence-aware unit-economics audits for AI media pipelines without storing prompts, responses, credentials, or customer content."
+keywords:
+  - AI media
+  - LLM observability
+  - unit economics
+  - audit
+  - token cost

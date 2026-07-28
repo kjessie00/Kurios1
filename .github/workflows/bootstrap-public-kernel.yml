@@ -6,6 +6,8 @@ on:
     paths:
       - ".bootstrap/project.tar.gz.b64.part-*"
       - ".github/workflows/bootstrap-public-kernel.yml"
+  pull_request:
+    branches: [master]
   workflow_dispatch:
 
 permissions:

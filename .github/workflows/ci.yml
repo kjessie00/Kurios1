@@ -34,3 +34,17 @@ jobs:
           media-economics-audit validate examples/paired/baseline.jsonl --policy examples/paired/baseline-policy.json
           media-economics-audit audit examples/paired/baseline.jsonl --policy examples/paired/baseline-policy.json --out /tmp/audit --fail-on never
           media-economics-audit verify /tmp/audit/manifest.sha256
+
+  source-snapshot:
+    name: Source snapshot
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build source snapshot
+        run: tar --exclude=.git -czf source-snapshot.tar.gz .
+      - uses: actions/upload-artifact@v4
+        with:
+          name: source-snapshot-${{ github.sha }}
+          path: source-snapshot.tar.gz
+          if-no-files-found: error
+          retention-days: 1
